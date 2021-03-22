@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.get("/")
 async def read_own_items():
-    return 'Coltea'
+    return '我爱落雨'
 
 
 if __name__ == '__main__':
