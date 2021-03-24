@@ -2,19 +2,35 @@
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: melody
+
+title: Drinks
+subtitle: Coffee & Cola & Tea
+description: #站点的描述，写一段话来介绍你的博客吧:)，主要为SEO使用
+author: Coltea #显示的文章作者名字，例如我配置的是fourstring
+language: zh-Hans #语言。简体中文是zh-Hans
+timezone: #时区，可以不配置，默认以本地时区为准
+url: http://colte.top #你的站点地址，如果是全站HTTPS记得写成https://domain.com
+root: / #如果您的网站存放在子目录中，例如 http://yoursite.com/blog，则请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。（引用自官方文档）
+permalink: :year/:month/:day/:title/ #固定链接格式。这项配置的格式为：变量1/变量2/变量3...，其中合法的变量格式为“:变量名”（注意，:是变量的组成部分！）这样生成的效果为/2016/08/10/文章标题。默认的固定链接格式存在一些问题，下文讲解
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: git
+  repo: https://github.com/coltea/drinks.git
+  branch: [main]
+  message: [message]
+
 # Site
-title: Hexo
-subtitle: ''
-description: ''
 keywords:
-author: John Doe
-language: en
-timezone: ''
+
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
-permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -94,15 +110,24 @@ include:
 exclude:
 ignore:
 
-# Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: landscape
 
-# Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: https://github.com/coltea/drinks.git
-  branch: [main]
-  message: [message]
+#
+#
+#jsonContent:
+#  meta: true
+#  pages: false
+#  posts:
+#    title: true
+#    date: true
+#    path: true
+#    text: false
+#    raw: false
+#    content: false
+#    slug: false
+#    updated: false
+#    comments: false
+#    link: false
+#    permalink: true
+#    excerpt: false
+#    categories: true
+#    tags: true
