@@ -5,15 +5,15 @@
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: melody
+theme: fluid
 
 title: Drinks
 subtitle: Coffee & Cola & Tea
 description: #站点的描述，写一段话来介绍你的博客吧:)，主要为SEO使用
 author: Coltea #显示的文章作者名字，例如我配置的是fourstring
-language: zh-Hans #语言。简体中文是zh-Hans
+language: zh-CN #语言。简体中文是zh-Hans
 timezone: #时区，可以不配置，默认以本地时区为准
-url: http://colte.top #你的站点地址，如果是全站HTTPS记得写成https://domain.com
+url: http://1.15.107.122 #你的站点地址，如果是全站HTTPS记得写成https://domain.com
 root: / #如果您的网站存放在子目录中，例如 http://yoursite.com/blog，则请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。（引用自官方文档）
 permalink: :year/:month/:day/:title/ #固定链接格式。这项配置的格式为：变量1/变量2/变量3...，其中合法的变量格式为“:变量名”（注意，:是变量的组成部分！）这样生成的效果为/2016/08/10/文章标题。默认的固定链接格式存在一些问题，下文讲解
 
