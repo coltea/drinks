@@ -1,12 +1,12 @@
 ---
-title: Go面试题
+title: Golang面试题
 date: 2021-12-07 17:25:11
 tags: 
- - Database
-categories: 
  - Go
+categories: 
+ - Interview
 ---
-# Go
+# Go面试题
 
 [TOC]
 
@@ -16,7 +16,6 @@ categories:
 
 - 是变量名，而非关键字、保留字 可以覆盖（但不建议）
 - 引用类型的零值
-
 
 
 #### slice

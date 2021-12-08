@@ -1,12 +1,12 @@
 ---
-title: Python
+title: Python面试题
 date: 2021-03-27 23:26:11
 tags: 
  - Python
 categories: 
- - Python
+ - Interview
 ---
-# Python
+# Python面试题
 
 [TOC]
 

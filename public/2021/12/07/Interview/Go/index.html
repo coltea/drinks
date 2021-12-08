@@ -1,0 +1,943 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Coltea">
+  <meta name="keywords" content="">
+  
+  <title>Golang面试题 - Drinks</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"1.15.107.122","root":"/","version":"1.8.9a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Drinks</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/background2.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Golang面试题">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-07 17:25" pubdate>
+        2021年12月7日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      66
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Golang面试题</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Go面试题"><a href="#Go面试题" class="headerlink" title="Go面试题"></a>Go面试题</h1><p>[TOC]</p>
+<h2 id="编程基础"><a href="#编程基础" class="headerlink" title="编程基础"></a>编程基础</h2><h4 id="nil"><a href="#nil" class="headerlink" title="nil"></a>nil</h4><ul>
+<li>是变量名，而非关键字、保留字 可以覆盖（但不建议）</li>
+<li>引用类型的零值</li>
+</ul>
+<h4 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h4><p>当<code>slice</code>的容量小于1024时，容量是按照2倍大小增长的。当容量大于1024，增长的容量是原来的1.25倍</p>
+<h4 id="rune类型"><a href="#rune类型" class="headerlink" title="rune类型"></a>rune类型</h4><p>中文长度判断 int32</p>
+<h4 id="new-make区别"><a href="#new-make区别" class="headerlink" title="new/make区别"></a>new/make区别</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">new</span><span class="hljs-params">(Type)</span> *<span class="hljs-title">Type</span></span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">make</span><span class="hljs-params">(t Type, size ...IntegerType)</span> <span class="hljs-title">Type</span></span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>new：用于获取对应类型的指针类型,并进行内存分配置为零值</li>
+<li>make：引用类型的初始化(slice，map、chan) 返回传入的类型,用于引用类型的内存空间分配 </li>
+</ul>
+<ol>
+<li><p>入参不同: </p>
+<p>make( )是slice，map、chan初始化 还可以加长度和容量</p>
+<p>new( )是struct 只接受一个参数</p>
+</li>
+<li><p>返回</p>
+<p>new 返回值是一个指针，指向新分配的该类型的零值,</p>
+<p>make 直接返回的是Type类型值。</p>
+</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs go">n1 := <span class="hljs-built_in">make</span>([]A, <span class="hljs-number">5</span>)<br>n2 := <span class="hljs-built_in">make</span>([]*A, <span class="hljs-number">5</span>)<br>n3 := <span class="hljs-built_in">new</span>([]A)<br>n4 := <span class="hljs-built_in">new</span>([]*A)<br><br>fmt.Println(n1, n1[<span class="hljs-number">0</span>]) <span class="hljs-comment">// [&#123; &#125; &#123; &#125; &#123; &#125; &#123; &#125; &#123; &#125;] &#123; &#125;</span><br>fmt.Println(n2, n1[<span class="hljs-number">0</span>]) <span class="hljs-comment">//  [&lt;nil&gt; &lt;nil&gt; &lt;nil&gt; &lt;nil&gt; &lt;nil&gt;] &#123; &#125;</span><br>fmt.Println(n3)        <span class="hljs-comment">//  &amp;[]</span><br>fmt.Println(n4)        <span class="hljs-comment">//  &amp;[]</span><br><br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="引用类型-值类型"><a href="#引用类型-值类型" class="headerlink" title="引用类型/值类型"></a>引用类型/值类型</h4><ul>
+<li>值类型 int string float bool struct</li>
+<li>引用类型 chanel slice map interface    可以用make初始化</li>
+</ul>
+<p>引用类型需要分配内存空间</p>
+<h4 id="Go是值传递还是引用传递"><a href="#Go是值传递还是引用传递" class="headerlink" title="Go是值传递还是引用传递"></a>Go是值传递还是引用传递</h4><p>全部是值传递，都是一个副本，一个拷贝。</p>
+<p>但是因为拷贝的内容</p>
+<p>有时候是非引用类型（int、string、struct等），这样就在函数中就无法修改原内容数据；</p>
+<p>有的是引用类型（指针、map、slice、chan等），这样就可以修改原内容数据。</p>
+<h4 id="函数导入指针还是值"><a href="#函数导入指针还是值" class="headerlink" title="函数导入指针还是值"></a>函数导入指针还是值</h4><pre><code>  视情况而定 对原数据修改是指针，其他穿值
+</code></pre>
+<p>​      （有外部调用会有逃逸 无关值类型还是指针类型）</p>
+<h4 id="json"><a href="#json" class="headerlink" title="json"></a>json</h4><p>数字默认解析为float64</p>
+<h4 id="触发异常的场景"><a href="#触发异常的场景" class="headerlink" title="触发异常的场景"></a>触发异常的场景</h4><ul>
+<li>空指针解析</li>
+<li>下标越界</li>
+<li>除数为0</li>
+<li>主线程阻塞 死锁 deadelock</li>
+<li>解析错误 未加断言</li>
+<li>调用 panic 函数</li>
+</ul>
+<h4 id="导包顺序-多个init能否执行"><a href="#导包顺序-多个init能否执行" class="headerlink" title="导包顺序/多个init能否执行"></a>导包顺序/多个init能否执行</h4><p>​    执行顺序是按照导入包的顺序执行，而不是按照调用先后顺序执行。</p>
+<p>​    main开始 按顺序导包 import  然后按顺序执行init() 然后执行main函数代码</p>
+<h4 id="多核CPU场景下，cache如何保持一致、不冲突？"><a href="#多核CPU场景下，cache如何保持一致、不冲突？" class="headerlink" title="多核CPU场景下，cache如何保持一致、不冲突？"></a><strong>多核CPU场景下，cache如何保持一致、不冲突？</strong></h4><p>设置状态 </p>
+<h4 id="uint类型溢出"><a href="#uint类型溢出" class="headerlink" title="uint类型溢出"></a><strong>uint类型溢出</strong></h4><p>1-2 = 2^64 -1</p>
+<h4 id="defer-、painc的执行顺序"><a href="#defer-、painc的执行顺序" class="headerlink" title="defer 、painc的执行顺序"></a>defer 、painc的执行顺序</h4><p>defer 的执行顺序是后进先出。当出现 panic 语句的时候，会先按照 defer 的后进先出的顺序执行，最后才会执行panic</p>
+<h4 id="select可以用于什么？"><a href="#select可以用于什么？" class="headerlink" title="select可以用于什么？"></a><strong>select可以用于什么？</strong></h4><p>一个面向channel的 IO 监听操作,常用于gorotine的完美退出</p>
+<h4 id="错误处理是怎么做的"><a href="#错误处理是怎么做的" class="headerlink" title="错误处理是怎么做的?"></a>错误处理是怎么做的?</h4><h4 id="数组扩容实现"><a href="#数组扩容实现" class="headerlink" title="数组扩容实现"></a>数组扩容实现</h4><p>append函数，因为slice底层数据结构是，由数组、len、cap组成，所以，在使用append扩容时，会查看数组后面有没有连续内存快，有就在后面添加，没有就重新生成一个大的数组。</p>
+<h4 id="golang中解析tag是怎么"><a href="#golang中解析tag是怎么" class="headerlink" title="golang中解析tag是怎么"></a>golang中解析tag是怎么</h4><h4 id=""><a href="#" class="headerlink" title=""></a></h4><h2 id="编程进阶"><a href="#编程进阶" class="headerlink" title="编程进阶"></a>编程进阶</h2><h4 id="读一个空管道或写一个缓冲已经满的管道，到底会发生什么行为"><a href="#读一个空管道或写一个缓冲已经满的管道，到底会发生什么行为" class="headerlink" title="读一个空管道或写一个缓冲已经满的管道，到底会发生什么行为"></a>读一个空管道或写一个缓冲已经满的管道，到底会发生什么行为</h4><ol>
+<li>发生在非main协程里，则阻塞</li>
+<li>发生在main协程里<br>2.1 没有其他非main协程可以执行，报 fatal error: all goroutines are asleep - deadlock!<br> 　　2.2 有其他非main协程可以执行，则main协程会让他们先执行<br> 　　　　2.2.1 非main协在程执行过程中，帮main协程解除了阻塞<br> 　　　　2.2.2 非main协执行结束后，依然没有帮main协程解除阻塞，则main协程报 fatal error: all goroutines are asleep - deadlock!</li>
+</ol>
+<h4 id="实现的？反射原理是什么？通过反射调用函数‘"><a href="#实现的？反射原理是什么？通过反射调用函数‘" class="headerlink" title="实现的？反射原理是什么？通过反射调用函数‘"></a>实现的？反射原理是什么？通过反射调用函数‘</h4><h4 id="子程-panic-为何没法被父协程-recover"><a href="#子程-panic-为何没法被父协程-recover" class="headerlink" title="子程 panic 为何没法被父协程 recover"></a>子程 panic 为何没法被父协程 recover</h4><p> defer 在多个协程之间是没有效果，在子协程里触发 panic，只能触发自己协程内的 defer，而不能调用 main 协程里的 defer 函数的。</p>
+<h4 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h4><ul>
+<li><p>性能要求高（如用到cgo、文件） 可以加大p的数量runtime.GOMAXPROCS(GOMAXPROCS(0)+1)</p>
+</li>
+<li><p>slice和map的容量初始化: 减少不断加元素时的扩容</p>
+</li>
+<li><p>减少反射 </p>
+<p><code>reflect.Value</code> 会将对象拷贝并分配到堆上，程序中的对象都是消息体，有的消息体会超大，因此会分配较多的堆内存。</p>
+</li>
+<li><p>GOGC=100调大（内存要足够大） 降低gc除非频率 </p>
+<p>golang 的 gc 时机是根据当前与上次的 heap size 的比例来决定</p>
+</li>
+<li><p>一点点拷贝胜过传指针: 对象在栈上分配, 减少GC频率.</p>
+</li>
+<li><p>全局缓存对象有大量的key的情况, value少用指针<br>GC并发Mark需要mark存活的对象, 如果value里指针多, 导致mark消耗的CPU很大, 使用一个struct内嵌数据消除指针.</p>
+</li>
+</ul>
+<h4 id="pprof"><a href="#pprof" class="headerlink" title="pprof"></a><strong>pprof</strong></h4><p>10ms/次收集</p>
+<ul>
+<li>CPU profile：报告程序的 CPU 使用情况，按照一定频率去采集应用程序在 CPU 和寄存器上面的数据</li>
+<li>Memory Profile（Heap Profile）：报告程序的内存使用情况</li>
+<li>Block Profiling：报告 goroutines 不在运行状态的情况，可以用来分析和查找死锁等性能瓶颈</li>
+<li>Goroutine Profiling：报告 goroutines 的使用情况，有哪些 goroutine，它们的调用关系是怎样的</li>
+</ul>
+<p>runtime/pprof主要用于可结束的代码块，如一次编解码操作等；</p>
+<p>net/http/pprof是对runtime/pprof的二次封装，主要用于不可结束的代码块，如web应用等。</p>
+<ul>
+<li>heap空间分析</li>
+<li>函数执行时间</li>
+<li>svg的文件，用浏览器打开就是火焰图</li>
+</ul>
+<h4 id="trace"><a href="#trace" class="headerlink" title="trace"></a>trace</h4><p>go tool trace，可以看到 p 绑定的 g 实际的 GC 动作和相应时长，以及阻塞时间</p>
+<h2 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h2><h4 id="WaitGroup"><a href="#WaitGroup" class="headerlink" title="WaitGroup"></a>WaitGroup</h4><p>用于 多个 Goroutine  并发执行等待返回</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> WaitGroup <span class="hljs-keyword">struct</span> &#123;<br>	noCopy noCopy    <span class="hljs-comment">//  保证 sync.WaitGroup 不会被开发者通过再赋值的方式拷贝；</span><br>	state1 [<span class="hljs-number">3</span>]<span class="hljs-keyword">uint32</span>  <span class="hljs-comment">// 存储着状态和信号量；</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="实现超时控制"><a href="#实现超时控制" class="headerlink" title="实现超时控制"></a>实现超时控制</h4><ul>
+<li>time,after</li>
+<li>context.WithTimeout()</li>
+</ul>
+<h4 id="Mutex是悲观锁还是乐观锁？悲观锁、乐观锁是什么？"><a href="#Mutex是悲观锁还是乐观锁？悲观锁、乐观锁是什么？" class="headerlink" title="Mutex是悲观锁还是乐观锁？悲观锁、乐观锁是什么？"></a>Mutex是悲观锁还是乐观锁？悲观锁、乐观锁是什么？</h4><p>悲观锁</p>
+<p>读写都是互斥</p>
+<p>乐观锁本质不是锁 只是 </p>
+<p>乐观锁实现 不能保证先进先出 没法做到线程安全</p>
+<h4 id="Mutex有几种模式？"><a href="#Mutex有几种模式？" class="headerlink" title="Mutex有几种模式？"></a>Mutex有几种模式？</h4><ul>
+<li><p>正常模式</p>
+<ol>
+<li>有抢占的机制 </li>
+<li>被唤起的 Goroutine 与新创建的 Goroutine 竞争(被唤起的 Goroutine大概率会获取不到锁)</li>
+</ol>
+</li>
+<li><p>饥饿模式</p>
+<ol>
+<li>新的 Goroutine 在该状态下不能获取锁、也不会进入自旋状态，它们只会在队列的末尾等待</li>
+<li>严格的先来后到 全部都要排队  直接走队列先进先出 </li>
+<li>饥饿模式的能避免 Goroutine 由于陷入等待无法获取锁而造成的高尾延时。</li>
+</ol>
+</li>
+</ul>
+<h4 id="Mutex什么时候-进入-退出-饥饿模式？"><a href="#Mutex什么时候-进入-退出-饥饿模式？" class="headerlink" title="Mutex什么时候 进入/退出 饥饿模式？"></a>Mutex什么时候 进入/退出 饥饿模式？</h4><blockquote>
+<p>进入饥饿模式</p>
+</blockquote>
+<ul>
+<li>当队列头部超过1ms获取不到锁的时候</li>
+</ul>
+<blockquote>
+<p>退出饥饿模式</p>
+</blockquote>
+<ul>
+<li><p>队列为空</p>
+</li>
+<li><p>队列第一个锁获得时间小于1ms</p>
+</li>
+</ul>
+<h4 id="Mutex可以做自旋锁吗？"><a href="#Mutex可以做自旋锁吗？" class="headerlink" title="Mutex可以做自旋锁吗？"></a>Mutex可以做自旋锁吗？</h4><p> 可以</p>
+<h4 id="项目中用过的锁？"><a href="#项目中用过的锁？" class="headerlink" title="项目中用过的锁？"></a>项目中用过的锁？</h4><h4 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h4><p>信号量做并发量限制。</p>
+<h4 id="Go并发控制"><a href="#Go并发控制" class="headerlink" title="Go并发控制"></a>Go并发控制</h4><ul>
+<li>全局共享变量加个互斥锁</li>
+<li>channel通信</li>
+<li>Context包</li>
+</ul>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><h4 id="介绍一下channel"><a href="#介绍一下channel" class="headerlink" title="介绍一下channel"></a><strong>介绍一下channel</strong></h4><p>缓冲</p>
+<ul>
+<li>无缓存,同步,需要先有一个消费者 没有消费者先启动， 会导致死锁阻塞</li>
+<li>有缓冲,异步 基于环形缓存的传统生产者消费者模型；</li>
+</ul>
+<p>csp</p>
+<p>在栈上的一个指向堆上的指针</p>
+<h4 id="channel实现原理"><a href="#channel实现原理" class="headerlink" title="channel实现原理"></a><strong>channel实现原理</strong></h4><p>runtime库里的一个结构体，是一个用于同步和通信的有锁队列</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> hchan <span class="hljs-keyword">struct</span> &#123;<br>	qcount   <span class="hljs-keyword">uint</span>  <span class="hljs-comment">// Channel 中的元素个数；</span><br>	dataqsiz <span class="hljs-keyword">uint</span> <span class="hljs-comment">// Channel 中的循环队列的长度；</span><br>	buf      unsafe.Pointer  <span class="hljs-comment">// Channel 的缓冲区数据指针；</span><br>  <br>	elemsize <span class="hljs-keyword">uint16</span>   <span class="hljs-comment">// Channel 能够收发的元素大小</span><br>	closed   <span class="hljs-keyword">uint32</span><br>	elemtype *_type  <span class="hljs-comment">// Channel 能够收发的元素类型</span><br>  <br>	sendx    <span class="hljs-keyword">uint</span> <span class="hljs-comment">// Channel 的发送操作处理到的位置；</span><br>	recvx    <span class="hljs-keyword">uint</span>  <span class="hljs-comment">//Channel 的接收操作处理到的位置；</span><br>	recvq    waitq  <span class="hljs-comment">// 接受等待队列</span><br>	sendq    waitq   <span class="hljs-comment">// 发送等待队列</span><br><br>	lock mutex <span class="hljs-comment">// 用于保护成员变量的互斥锁 mutex 来保证线程安全,使用互斥锁解决程序中可能存在的线程竞争问题,容易地实现有锁队列。  悲观互斥锁</span><br>&#125;<br><br><br><span class="hljs-keyword">type</span> waitq <span class="hljs-keyword">struct</span> &#123;<br>	first *sudog<br>	last  *sudog<br>&#125; <span class="hljs-comment">// 表示一个在等待列表中的 Goroutine，该结构中存储了两个分别指向前后 runtime.sudog 的指针以构成链表。</span><br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>用于保护成员变量的互斥锁 mutex 来保证线程安全,使用互斥锁解决程序中可能存在的线程竞争问题,容易地实现有锁队列。</p>
+</li>
+<li><p>有缓冲的数组 有字段来标记缓冲的队列长度</p>
+</li>
+<li><p> 双指针 </p>
+</li>
+<li><p>环形队列</p>
+</li>
+</ul>
+<h4 id="channel是否线程安全？"><a href="#channel是否线程安全？" class="headerlink" title="channel是否线程安全？"></a><strong>channel是否线程安全？</strong></h4><ul>
+<li>这个可以看源码就知道channel内部维护了一个互斥锁，来保证线程安全：</li>
+<li>原子操作 </li>
+<li>CSP</li>
+</ul>
+<p> 悲观互斥锁 只有一个goroutine 能拿到这个锁</p>
+<h4 id="Channel分配在栈上还是堆上？"><a href="#Channel分配在栈上还是堆上？" class="headerlink" title="Channel分配在栈上还是堆上？"></a><strong>Channel分配在栈上还是堆上？</strong></h4><p>堆上</p>
+<p>​     </p>
+<h2 id="GMP"><a href="#GMP" class="headerlink" title="GMP"></a>GMP</h2><p>调度在计算机中是分配工作所需资源的方法. linux的调度为CPU找到可运行的线程. 而Go的调度是为M(线程)找到P(内存, 执行票据)和可运行的G.</p>
+<h4 id="介绍一下GMP"><a href="#介绍一下GMP" class="headerlink" title="介绍一下GMP"></a>介绍一下GMP</h4><p><strong>G:Goroutine</strong>(用户态轻量线程)</p>
+<ul>
+<li></li>
+<li>栈初始2KB, 调度不涉及系统调用.</li>
+<li>用户函数调用前会检查栈空间是否足够, 不够的话, 会进行栈扩容</li>
+</ul>
+<p>P:Processor(中间逻辑处理调度器)</p>
+<ul>
+<li></li>
+</ul>
+<p>M:Machine Tread（操作系统分配到go的内核线程数）</p>
+<ul>
+<li>p的本地队列为空为自旋线程（过度状态 很快从全局或者work stealing 拿g）</li>
+<li></li>
+</ul>
+<h4 id="GMP线程模型"><a href="#GMP线程模型" class="headerlink" title="GMP线程模型"></a>GMP线程模型</h4><ul>
+<li><p>1:1  协程的创建、删除和切换的都由CPU完成，CPU开销过高</p>
+</li>
+<li><p>1:M  无法利用多核、线程阻塞会导致所有协程阻塞</p>
+</li>
+<li><p>M:N  实现复杂</p>
+</li>
+</ul>
+<h4 id="GMP流程"><a href="#GMP流程" class="headerlink" title="GMP流程"></a>GMP流程</h4><ul>
+<li>初始化 创建G0</li>
+<li>创建goroutine</li>
+<li>放入队列<ul>
+<li>优先本地队列</li>
+<li>本地满了放全局队列</li>
+</ul>
+</li>
+<li>M通过P获取G<ul>
+<li>1/62 全局</li>
+<li>本地队列</li>
+<li>全局队列</li>
+<li>偷其他队列</li>
+</ul>
+</li>
+<li>4.执行</li>
+</ul>
+<h3 id="goroutine"><a href="#goroutine" class="headerlink" title="goroutine"></a>goroutine</h3><h4 id="介绍一下goroutine"><a href="#介绍一下goroutine" class="headerlink" title="介绍一下goroutine"></a>介绍一下goroutine</h4><ul>
+<li><strong>内存消耗更少：</strong></li>
+</ul>
+<p>Goroutine所需要的内存通常只有2kb，而线程则需要1Mb（500倍）。最大1GB</p>
+<ul>
+<li><strong>创建与销毁的开销更小</strong></li>
+</ul>
+<p>由于线程创建时需要向操作系统申请资源，并且在销毁时将资源归还，因此它的创建和销毁的开销比较大。相比之下，goroutine的创建和销毁是由go语言在运行时自己管理的，因此开销更低。</p>
+<ul>
+<li><strong>切换开销更小</strong></li>
+</ul>
+<p>这是goroutine于线程的主要区别，也是golang能够实现高并发的主要原因。线程的调度方式是抢占式的，如果一个线程的执行时间超过了分配给它的时间片，就会被其它可执行的线程抢占。在线程切换的过程中需要保存/恢复所有的寄存器信息，比如16个通用寄存器，PC（Program Counter），SP（Stack Pointer），段寄存器等等。</p>
+<p>而goroutine的调度是协同式的，它不会直接地与操作系统内核打交道。当goroutine进行切换的时候，之后很少量的寄存器需要保存和恢复（PC和SP）。因此gouroutine的切换效率更高。</p>
+<h4 id="G0-M0的用途"><a href="#G0-M0的用途" class="headerlink" title="G0/M0的用途"></a>G0/M0的用途</h4><p>G0</p>
+<ul>
+<li><p>M启动后创建的第一个G就是G0，每个M都会有一个自己的G0</p>
+</li>
+<li><p>仅用于负责调度，G0不指向任何可执行的函数。</p>
+</li>
+<li><p>在调度或系统调用时会使用G0的栈空间, 全局变量的G0是M0的G0。</p>
+</li>
+</ul>
+<p>M0</p>
+<ul>
+<li><p>主线程，实例 runtime.m0</p>
+</li>
+<li><p>执行初始化操作和启动第一个G（即G0）， 在之后M0就和其他的M一致。</p>
+</li>
+</ul>
+<h4 id="Goroutine调度顺序"><a href="#Goroutine调度顺序" class="headerlink" title="Goroutine调度顺序"></a>Goroutine调度顺序</h4><ul>
+<li><p>放</p>
+<p>优先放本地队列 —&gt; 满了 —&gt; 全局队列</p>
+</li>
+<li><p>取</p>
+<ol>
+<li><p>第一步，从全局运行队列中寻找goroutine。</p>
+<p>为了保证调度的公平性，每个工作线程每经过61次调度就需要优先尝试从全局运行队列中找出一个goroutine来运行，这样才能保证位于全局运行队列中的goroutine得到调度的机会。全局运行队列是所有工作线程都可以访问的，所以在访问它之前需要加锁。</p>
+</li>
+<li><p>第二步，从工作线程本地运行队列中寻找goroutine。</p>
+<p>如果不需要或不能从全局运行队列中获取到goroutine则从本地运行队列中获取。</p>
+</li>
+<li><p>第三步，从全局运行队列中寻找goroutine。</p>
+</li>
+<li><p>第四步，从其它工作线程的运行队列中偷取goroutine。</p>
+<p>如果上一步也没有找到需要运行的goroutine，则调用findrunnable从其他工作线程的运行队列中偷取goroutine，findrunnable函数在偷取之前会再次尝试从全局运行队列和当前线程的本地运行队列中查找需要运行的goroutine。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="Goroutine的状态"><a href="#Goroutine的状态" class="headerlink" title="Goroutine的状态"></a>Goroutine的状态</h4><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvyh2um0axj30t108lq4a.jpg" srcset="/img/loading.gif" lazyload alt="image-20211031142305144"></p>
+<h4 id="Goroutine自旋占用cpu如何解决（go调用、gmp）"><a href="#Goroutine自旋占用cpu如何解决（go调用、gmp）" class="headerlink" title="Goroutine自旋占用cpu如何解决（go调用、gmp）"></a>Goroutine自旋占用cpu如何解决（go调用、gmp）</h4><h4 id="Goroutine抢占时机（gc-栈扫描）"><a href="#Goroutine抢占时机（gc-栈扫描）" class="headerlink" title="Goroutine抢占时机（gc 栈扫描）"></a>Goroutine抢占时机（gc 栈扫描）</h4><p>STW的时候</p>
+<h4 id="goroutine什么时候会发生阻塞"><a href="#goroutine什么时候会发生阻塞" class="headerlink" title="goroutine什么时候会发生阻塞?"></a>goroutine什么时候会发生阻塞?</h4><ol>
+<li><p>由于原子、互斥量或通道操作调用导致  Goroutine  阻塞，调度器将把当前阻塞的 Goroutine 切换出去，重新调度 LRQ 上的其他 Goroutine；</p>
+</li>
+<li><p>由于网络请求和 IO 操作导致  Goroutine  阻塞。</p>
+<p>Go 程序提供了网络轮询器（NetPoller）来处理网络请求和 IO 操作的问题，其后台通过 kqueue（MacOS），epoll（Linux）或  iocp（Windows）来实现 IO 多路复用。通过使用 NetPoller 进行网络系统调用，调度器可以防止  Goroutine  在进行这些系统调用时阻塞 M。这可以让 M 执行 P 的  LRQ  中其他的  Goroutines，而不需要创建新的 M。执行网络系统调用不需要额外的 M，网络轮询器使用系统线程，它时刻处理一个有效的事件循环，有助于减少操作系统上的调度负载。用户层眼中看到的 Goroutine 中的“block socket”，实现了 goroutine-per-connection 简单的网络编程模式。实际上是通过 Go runtime 中的 netpoller 通过 Non-block socket + I/O 多路复用机制“模拟”出来的。</p>
+</li>
+<li><p>当调用一些系统方法的时候（如文件 I/O）</p>
+<p>，如果系统方法调用的时候发生阻塞，这种情况下，网络轮询器（NetPoller）无法使用，而进行系统调用的  G1  将阻塞当前 M1。调度器引入 其它M 来服务 M1 的P。</p>
+</li>
+<li><p>如果在 Goroutine 去执行一个 sleep 操作<br>导致 M 被阻塞了。Go 程序后台有一个监控线程 sysmon，它监控那些长时间运行的 G 任务然后设置可以强占的标识符，别的 Goroutine 就可以抢先进来执行。</p>
+</li>
+</ol>
+<p>Go 中的阻塞分析有助于您分析程序在等待下列阻塞操作上的花费时间：</p>
+<ul>
+<li>select</li>
+<li>chan send</li>
+<li>chan receive</li>
+<li>semacquire ( <code>Mutex.Lock</code>, <code>RWMutex.RLock</code> , <code>RWMutex.Lock</code>, <code>WaitGroup.Wait</code>)</li>
+<li>notifyListWait ( <code>Cond.Wait</code>) 只有当 Go 通过将 goroutine 置于等待状态来暂停执行时，时间才会被跟踪。例如 <code>Mutex.Lock()</code>，如果锁可以立即或通过少量自旋被获得，那么这样的操作将不会出现在您的分析结果中。</li>
+</ul>
+<p>上面的操作是 Go 运行时使用的等待状态的子集，下面的操作将不会出现在分析文件中：</p>
+<ul>
+<li>time.Sleep（但是 time.After, time.Tick 和其他封装了 channel 的操作会显示出来）</li>
+<li>垃圾回收</li>
+<li>系统调用（例如网络 I/O，文件 I/O 等）</li>
+<li>运行时内部锁（例如 stopTheWorld）</li>
+<li>cgo 阻塞调用</li>
+<li>永远阻塞的事件（例如在 nil 通道上发送/接收）</li>
+<li>阻止尚未完成的事件</li>
+</ul>
+<p>在某些场景下， Goroutine Profiling (debug=2) 可能是阻塞分析的一个很好的文档，因为它涵盖了所有等待状态，并且可以显示尚未完成且正在进行的阻塞事件。</p>
+<h4 id="goroutine阻塞了怎么办"><a href="#goroutine阻塞了怎么办" class="headerlink" title="goroutine阻塞了怎么办"></a>goroutine阻塞了怎么办</h4><ul>
+<li><p>原子、互斥量或通道、网络请求和 IO 操作、sleep</p>
+<p>调度器将把当前阻塞的 Goroutine 切换出去，重新调度 LRQ 上的其他 Goroutine</p>
+</li>
+<li><p>当调用一些系统方法的时候 syscall（如文件 I/O），</p>
+<p>而进行系统调用的 G将阻塞当前 M。调度器引入 其它M 来服务 M1 的P。</p>
+</li>
+<li><p>sleep</p>
+<p>Go 程序后台有一个监控线程 sysmon，它监控那些长时间运行的 G 任务然后设置可以强占的标识符，别的 Goroutine 就可以抢先进来执行。</p>
+</li>
+</ul>
+<h4 id="goroutine抢占的还是协作的-怎么实现"><a href="#goroutine抢占的还是协作的-怎么实现" class="headerlink" title="goroutine抢占的还是协作的 怎么实现"></a>goroutine抢占的还是协作的 怎么实现</h4><p>抢占</p>
+<p>sysmon</p>
+<p>当一个协程运行超过 10ms 时，Go 会尝试抢占它。10-20ms</p>
+<h4 id="线程协程映射关系-线程模型"><a href="#线程协程映射关系-线程模型" class="headerlink" title="线程协程映射关系/线程模型"></a>线程协程映射关系/线程模型</h4><ul>
+<li><strong>1:N:</strong>  无法利用多核、线程阻塞会导致所以协程阻塞</li>
+<li><strong>1:1:</strong>  协程的创建、删除和切换的都由CPU完成，CPU开销过高、</li>
+<li><strong>M:N:</strong> 好用但是实现复杂</li>
+</ul>
+<h3 id="Processor"><a href="#Processor" class="headerlink" title="Processor"></a>Processor</h3><p>​    上下文的逻辑处理调度器 </p>
+<p>​    每个p有一个自己的本地goroutine队列</p>
+<ol>
+<li><p>复用线程</p>
+</li>
+<li><p>避免频繁销毁创建，提高复用率</p>
+<ul>
+<li><p>work stealing机制</p>
+</li>
+<li><p>当本线程无可运行的G时，尝试从其他线程绑定的P偷取G。</p>
+</li>
+<li><p>hand off机制</p>
+</li>
+<li><p>当本线程因为G进行系统调用阻塞时，线程释放绑定的P，把P转移给其他空闲的线程执行。</p>
+</li>
+</ul>
+</li>
+<li><p>利用并行</p>
+</li>
+<li><p>GOMAXPROCS利用多核CPU</p>
+<ul>
+<li>GOMAXPROCS利用多核CPU</li>
+</ul>
+</li>
+<li><p>抢占策略</p>
+<ul>
+<li><p>goroutine最多占用CPU 10ms，</p>
+</li>
+<li><p>coroutine要等待协程主动释放</p>
+</li>
+</ul>
+</li>
+<li><p>全局队列</p>
+<ul>
+<li>work stealing从其他P偷不到G时，它可以从全局G队列获取</li>
+</ul>
+</li>
+</ol>
+<h2 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h2><h4 id="Gc的类型"><a href="#Gc的类型" class="headerlink" title="Gc的类型"></a>Gc的类型</h4><ul>
+<li><p>引用计数：对每个对象维护一个引用计数，当引用该对象的对象被销毁时，引用计数减1，当引用计数器为0是回收该对象。</p>
+<ul>
+<li>优点：对象可以很快的被回收，不会出现内存耗尽或达到某个阀值时才回收。</li>
+<li>缺点：不能很好的处理循环引用，而且实时维护引用计数，有也一定的代价。</li>
+<li>代表语言：Python、PHP、Swift</li>
+</ul>
+</li>
+<li><p>标记-清除：从根变量开始遍历所有引用的对象，引用的对象标记为”被引用”，没有被标记的进行回收。</p>
+<ul>
+<li>优点：解决了引用计数的缺点。</li>
+<li>缺点：需要STW，即要暂时停掉程序运行。</li>
+<li>代表语言：Golang(其采用三色标记法)</li>
+</ul>
+</li>
+</ul>
+<h4 id="介绍一下三色标记法"><a href="#介绍一下三色标记法" class="headerlink" title="介绍一下三色标记法"></a>介绍一下三色标记法</h4><p>减少了STW的时间，即时标记，与程序并发执行</p>
+<p><strong>流程</strong></p>
+<ul>
+<li><p>所有对象最开始都是白色.</p>
+</li>
+<li><p>从root对象(栈对象和全局变量)开始找到可达对象，标记为灰色，放入待处理队列。</p>
+</li>
+<li><p>遍历灰色对象队列，将其引用对象标记为灰色放入待处理队列，自身标记为黑色。</p>
+</li>
+<li><p>循环步骤3直到灰色队列为空为止，</p>
+</li>
+<li><p>结束时所有引用对象都被标记为黑色，所有不可达对象为白色，</p>
+</li>
+<li><p>对剩下的白色进行回收</p>
+</li>
+</ul>
+<h4 id="介绍一下混合写屏障"><a href="#介绍一下混合写屏障" class="headerlink" title="介绍一下混合写屏障"></a>介绍一下混合写屏障</h4><p>为了解决误清扫</p>
+<p>​    黑色对象创建新对象会变成白色，而黑色不是灰色一样会被扫描到</p>
+<ul>
+<li><p>原理</p>
+<ul>
+<li>强三色不变式 黑色不允许引用白色</li>
+<li>弱三色不变式 黑色引用白色时白色上层需要有灰色</li>
+</ul>
+</li>
+<li><p>屏障机制</p>
+<ul>
+<li>插入屏障 黑色下游必须为灰色</li>
+<li>删除屏障</li>
+</ul>
+</li>
+<li><p>并发标记和清扫 内存耗尽，挂起程序，清扫所有未被引用的对象</p>
+</li>
+<li><p>非分代和非紧缩</p>
+</li>
+</ul>
+<p> Golang中的混合写屏障满足<code>弱三色不变式</code>，结合了删除写屏障和插入写屏障的优点，只需要在开始时并发扫描各个goroutine的栈，使其变黑并一直保持，</p>
+<h4 id="Gc触发时机"><a href="#Gc触发时机" class="headerlink" title="Gc触发时机"></a>Gc触发时机</h4><ul>
+<li><p><strong>gcTriggerAlways</strong>（废弃）：强制触发GC</p>
+</li>
+<li><p><strong>gcTriggerHeap</strong>：当前分配的内存达到一定阈值时触发，这个阈值在每次GC过后都会根据堆内存的增长情况和CPU占用率来调整</p>
+</li>
+<li><p><strong>gcTriggerTime</strong>：当一定时间没有执行过GC就触发GC（2分钟）</p>
+</li>
+<li><p><strong>gcTriggerCycle</strong>：调用runtime.GC()</p>
+</li>
+</ul>
+<h4 id="Go内存管理方式"><a href="#Go内存管理方式" class="headerlink" title="Go内存管理方式"></a>Go内存管理方式</h4><h4 id="Go哪些对象分配在堆上，哪些对象分配在栈上？"><a href="#Go哪些对象分配在堆上，哪些对象分配在栈上？" class="headerlink" title="Go哪些对象分配在堆上，哪些对象分配在栈上？"></a>Go哪些对象分配在堆上，哪些对象分配在栈上？</h4><p>逃逸分析(escape analysis)，当发现变量的作用域没有跑出函数范围<strong>，</strong>就可以在栈上<strong>，</strong>反之则必须分配在堆。</p>
+<ul>
+<li><p>栈上-局部变量</p>
+</li>
+<li><p>堆上-全局、大内存变量</p>
+</li>
+</ul>
+<h4 id="介绍一下大对象小对象，为什么小对象多了会造成gc压力？"><a href="#介绍一下大对象小对象，为什么小对象多了会造成gc压力？" class="headerlink" title="介绍一下大对象小对象，为什么小对象多了会造成gc压力？"></a>介绍一下大对象小对象<strong>，为什么小对象多了会造成gc压力？</strong></h4><p>​    通常小对象过多会导致GC三色法消耗过多的GPU。优化思路是，减少对象分配</p>
+<h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><p>类似于TCMalloc的结构  最小8B 最大 32KB</p>
+<h3 id="局部对象是分配到栈上还是分配到堆上，返回一个引用安全吗"><a href="#局部对象是分配到栈上还是分配到堆上，返回一个引用安全吗" class="headerlink" title="局部对象是分配到栈上还是分配到堆上，返回一个引用安全吗"></a>局部对象是分配到栈上还是分配到堆上，返回一个引用安全吗</h3><p>Golang 中的变量只要被引用就会一直存活，Golang 编译器会将函数的局部变量分配到栈帧上，如果编译器不能确保变量return 后不再被引用，那么编译器会将它分配到堆上。<strong>所以这里返回一个引用是安全的。</strong> 并且如果局部变量非常大，那么它需要被分配在堆上而不是栈上。 并且Go 分成了微对象(0，16B)、小对象(16B,32KB)、大对象(32KB ,+∞)，微对象通过微分配器提高分配的性能，大对象会分配到栈上。</p>
+<h4 id="内存分区"><a href="#内存分区" class="headerlink" title="内存分区"></a>内存分区</h4><ul>
+<li><p>arena</p>
+<p>堆区，go runtime 在动态分配的内存都在这个区域，并且将内存块分成 8kb 的页，一些组合起来的称为 </p>
+</li>
+<li><p>bitmap</p>
+<p>用来标记堆区使用的映射表，它记录了哪些区域保存了对象，对象是否包含指针，以及 GC 的标记信息.</p>
+</li>
+<li><p>spans</p>
+<p>存放 mspan 的指针，根据 spans 区域的信息可以很容易找到 mspan. 它可以在 GC 时更快速的找到的大块的内存 mspan.</p>
+</li>
+</ul>
+<h4 id="堆栈分别存储什么？"><a href="#堆栈分别存储什么？" class="headerlink" title="堆栈分别存储什么？"></a>堆栈分别存储什么？</h4><ul>
+<li><p>栈</p>
+</li>
+<li><p>编译器管理</p>
+<ul>
+<li><p>一级缓存</p>
+</li>
+<li><p>自动申请、分配、释放。一般不会太大，我们常见的函数参数（不同平台允许存放的数量不同），局部变量等等都会存放在栈上</p>
+</li>
+<li><p>函数调用的局部对象、变量</p>
+</li>
+</ul>
+</li>
+<li><p>堆</p>
+<p>人为管理</p>
+<ul>
+<li><p>二级缓存</p>
+</li>
+<li><p>手动申请、分配、释放。一般所涉及的内存大小并不定，一般会存放较大的对象。另外其分配相对慢，涉及到的指令动作也相对多，GC会回收，引用类型一般都分配到堆上。</p>
+</li>
+<li><p>全局的对象、channel、需要共享的数据、超出分配的内存空间</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="内存逃逸"><a href="#内存逃逸" class="headerlink" title="内存逃逸"></a>内存逃逸</h4><p>编译时确定对象被分配到堆上还是栈上，这个步骤叫逃逸分析</p>
+<ul>
+<li><p>golang程序变量会携带有一组校验数据，用来证明它的整个生命周期是否在运行时完全可知。如果变量通过了这些校验，它就可以在栈上分配。否则就说它 逃逸 了，必须在堆上分配。</p>
+</li>
+<li><p>确认逃逸在编译阶段 确认变量的存放位置（堆还是栈）, 尽量放在栈上</p>
+</li>
+<li><p>全部在堆上</p>
+</li>
+<li><p>垃圾回收（GC）的压力不断增大</p>
+<ul>
+<li>申请、分配、回收内存的系统开销增大（相对于栈）</li>
+<li>动态分配产生一定量的内存碎片</li>
+</ul>
+</li>
+</ul>
+<h4 id="OOM内存溢出"><a href="#OOM内存溢出" class="headerlink" title="OOM内存溢出"></a>OOM内存溢出</h4><p>  pprof，拿到内存分布图</p>
+<p>  gc在标记清除后，不会立马把空闲的内存还给系统，而是等待5分钟后的scvg来释放内存。</p>
+<ul>
+<li><p>  慢增型 http、db、长连接 close</p>
+</li>
+<li><p>突增型 内存泄露或新增大量内存占用的逻辑(例：过长的字符串) </p>
+<p>  go无法分配内存时 throw输出的协程栈pprof调试 结合火焰图, 查看影响性能的热点部分</p>
+</li>
+</ul>
+<p>火焰图</p>
+<ul>
+<li>调用栈,长度代表cpu时长。</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h4 id="如何实现-deepcopy"><a href="#如何实现-deepcopy" class="headerlink" title="如何实现 deepcopy"></a>如何实现 deepcopy</h4><ul>
+<li><p>深度拷贝可以通过序列化和反序列化来实现，</p>
+<p><code>val := reflect.ValueOf(v)</code> 拿到 <code>v</code> 的反射值</p>
+</li>
+<li><p>也可以基于<code>reflect</code>包的反射机制完成。</p>
+</li>
+</ul>
+<p><a href="https://link.zhihu.com/?target=https://pkg.go.dev/reflect?tab=doc%23DeepEqual">reflect.DeepEqual</a> 检查</p>
+<p>​    </p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Interview/">Interview</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Go/">Go</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/05/alog/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

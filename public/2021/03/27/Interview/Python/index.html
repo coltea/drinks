@@ -18,7 +18,7 @@
   <meta name="author" content="Coltea">
   <meta name="keywords" content="">
   
-  <title>Python - Drinks</title>
+  <title>Python面试题 - Drinks</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Python">
+            <span class="h2" id="subtitle" title="Python面试题">
               
             </span>
 
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.7k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      16
+      19
        分钟
     </span>
   
@@ -225,66 +225,158 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Python</h1>
+            <h1 style="display: none">Python面试题</h1>
             
             <div class="markdown-body">
-              <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h4 id="进程-线程-协程"><a href="#进程-线程-协程" class="headerlink" title="进程/线程/协程"></a>进程/线程/协程</h4><p>进程下的多个线程可以共享该进程的所有资源，进程之间相互独立</p>
+              <h1 id="Python面试题"><a href="#Python面试题" class="headerlink" title="Python面试题"></a>Python面试题</h1><p>[TOC]</p>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="args-kwargs"><a href="#args-kwargs" class="headerlink" title="args/kwargs"></a>args/kwargs</h4><p>args 不定数量的输入参数</p>
+<p>kwargs 不定数量的键值对输入参数</p>
+<p><code>*args</code>必须在<code>**kwargs</code>前面</p>
+<h4 id="创建类-带上project"><a href="#创建类-带上project" class="headerlink" title="创建类 带上project"></a>创建类 带上project</h4><h4 id="生成器-迭代器"><a href="#生成器-迭代器" class="headerlink" title="生成器/迭代器"></a>生成器/迭代器</h4><p>迭代器</p>
+<p>记录计算方法 不实际存储列表数据到内存中，是一种延迟计算方法， range函数实现的就是一种迭代器</p>
+<p>生成器</p>
+<p>本质也是一种迭代器，yield语句</p>
+<ul>
+<li>就是用于迭代操作（for 循环）的对象，何实现了 <code>__next__</code> 方法 </li>
+<li>不需要像列表把所有元素一次性加载到内存，而是以一种延迟计算方式返回元素</li>
+</ul>
+<p>生成器</p>
+<ul>
+<li>函数加上 yiled参数 </li>
+<li>生成器本质上也是一个迭代器</li>
+<li>生成器表达式用（）</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/glossary.html#term-generator">Generator</a> 是一个用于创建迭代器的简单而强大的工具。 它们的写法类似标准的函数，但当它们要返回数据时会使用 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/reference/simple_stmts.html#yield"><code>yield</code></a> 语句。类似 go里面channel通道接受io、</p>
+<p>迭代器 节省内存, 每次生成一个元素, 而不是先计算出所有的元素, 保存下来.</p>
+<h4 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h4><p>解决重复性的操作，功能抽离</p>
+<ul>
+<li>计算函数运行时间</li>
+<li>给函数打日志</li>
+<li>类型检查</li>
+<li>打开db的连接</li>
+</ul>
+<h4 id="is和-的区别"><a href="#is和-的区别" class="headerlink" title="is和 == 的区别"></a>is和 == 的区别</h4><p>is是比较对象的id，而==仅比较对象的值，</p>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
+<li>dict-hashmap</li>
+<li>list-链表</li>
+<li>tuple-</li>
+<li>set</li>
+</ul>
+<h4 id="魔法方法"><a href="#魔法方法" class="headerlink" title="魔法方法"></a>魔法方法</h4><ul>
+<li><p><code>__add__</code></p>
+</li>
+<li><p><code>__dict__</code></p>
+</li>
+</ul>
+<h4 id="下划线开头函数"><a href="#下划线开头函数" class="headerlink" title="下划线开头函数"></a>下划线开头函数</h4><p><code>__init__ / __new__</code></p>
+<ol>
+<li><p>init是初始化方法 实例方法，new是构造方法 静态方法</p>
+</li>
+<li><p>new在init之前执行, 用于创建对象并返回对象（可返回实例如不可变对象）</p>
+</li>
+<li><p>init返回None、new返回对象或者实例</p>
+</li>
+<li><p>绝大多数情况下，我们都不需要自己重写__new__方法，但在当继承一个不可变的类型（例如str类,int类等）时，则需要用到new。</p>
+</li>
+</ol>
+<p><code>__getter__ / __setter__</code></p>
+<h4 id="编码区别"><a href="#编码区别" class="headerlink" title="编码区别"></a>编码区别</h4><ul>
+<li>ascii</li>
+<li>unicode</li>
+<li>Utf-8</li>
+</ul>
+<h4 id="模块查找顺序"><a href="#模块查找顺序" class="headerlink" title="模块查找顺序"></a>模块查找顺序</h4><ul>
+<li>内置的模块（python解释器自带的）</li>
+<li>第三方（开发者编写的模块）</li>
+<li>自定义的模块（自己编写的模块）</li>
+</ul>
+<h4 id="with关键词"><a href="#with关键词" class="headerlink" title="with关键词"></a>with关键词</h4><p>__ENTER</p>
+<p>__END</p>
+<h3 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h3><h5 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h5><ul>
+<li>N:1，Python协程模式，多个协程在一个线程中切换。在IO密集时切换效率高，但没有用到多核</li>
+<li>协程通信是并发 不会并行 因为在单线程内执行 所以线程安全不需要考虑互斥 </li>
+<li></li>
+</ul>
+<h4 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h4><ul>
+<li>c扩展</li>
+<li>pypy</li>
+<li>profile查看性能热点</li>
+<li>非cpu密集型用异步、多线程</li>
+<li>火焰图</li>
+<li>profile_line</li>
+<li></li>
+</ul>
+<h4 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h4><ul>
+<li>贪婪与非贪婪</li>
+</ul>
+<h4 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h4><ul>
+<li>循环应用导致引用计数无法清零、导致GC无法进行垃圾回收</li>
+<li>函数默认参数使用引用类型(dict、list)</li>
+</ul>
+<p>多线程</p>
+<ul>
+<li>async await</li>
+</ul>
+<p>flask</p>
+<ul>
+<li>context</li>
+</ul>
+<h4 id="存在GIL，为什么还要加现场锁"><a href="#存在GIL，为什么还要加现场锁" class="headerlink" title="存在GIL，为什么还要加现场锁"></a>存在GIL，为什么还要加现场锁</h4><p>GIL的线程安全是针对他自身Cpython的接口、字节码是按顺序执行的 （比如GC的应用计数）</p>
+<p>并非用户态的代码是线程安全的的</p>
+<p>用户的线程是可以切换执行的</p>
+<h4 id="进程-线程-协程"><a href="#进程-线程-协程" class="headerlink" title="进程/线程/协程"></a>进程/线程/协程</h4><p>进程下的多个线程可以共享该进程的所有资源，进程之间相互独立</p>
 <ul>
 <li><strong>多进程</strong>:cpu密集走进程,进程资源开销大，但相对稳定</li>
-<li>**多线程:**io密集走线程,python 有gil多线程只能发挥单核的性能 </li>
+<li>**多线程:**io 密集走线程,python 有gil多线程只能发挥单核的性能 </li>
 </ul>
 <p>在CPU密集的程序中，线程有点鸡肋，无法发挥多处理器的效率，这一点可以用进程来做。</p>
 <p>在IO 密集的程序中，大量时间都花在等待IO上，对CPU不敏感，线程可以很好的胜任。</p>
-<h3 id="内存管理机制"><a href="#内存管理机制" class="headerlink" title="内存管理机制"></a>内存管理机制</h3><h4 id="一、对象的引用计数机制"><a href="#一、对象的引用计数机制" class="headerlink" title="一、对象的引用计数机制"></a>一、对象的引用计数机制</h4><p>Python内部使用引用计数，来保持追踪内存中的对象，所有对象都有引用计数。</p>
+<h3 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h3><h4 id="字典按key排序"><a href="#字典按key排序" class="headerlink" title="字典按key排序"></a>字典按key排序</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">alist = [&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>:<span class="hljs-number">20</span>&#125;,&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>:<span class="hljs-number">30</span>&#125;,&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>:<span class="hljs-number">25</span>&#125;] <br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sort_by_age</span>(<span class="hljs-params">list1</span>):</span> <br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">sorted</span>(alist,key=<span class="hljs-keyword">lambda</span> x:x[<span class="hljs-string">&#x27;age&#x27;</span>],reverse=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="装饰器实现单例"><a href="#装饰器实现单例" class="headerlink" title="装饰器实现单例"></a>装饰器实现单例</h4><h4 id="GC-1"><a href="#GC-1" class="headerlink" title="GC"></a>GC</h4><p>Python内部使用引用计数，来保持追踪内存中的对象，所有对象都有引用计数。</p>
 <p>引用计数增加的情况：</p>
 <p>1，一个对象分配一个新名称</p>
 <p>2，将其放入一个容器中（如列表、元组或字典）</p>
 <p>引用计数减少的情况：</p>
 <p>1，使用del语句对对象别名显示的销毁</p>
 <p>2，引用超出作用域或被重新赋值</p>
-<h4 id="二、垃圾回收"><a href="#二、垃圾回收" class="headerlink" title="二、垃圾回收"></a>二、垃圾回收</h4><p>1，当一个对象的引用计数归零时，它将被垃圾收集机制处理掉。</p>
+<p>1，当一个对象的引用计数归零时，它将被垃圾收集机制处理掉。</p>
 <p>2，当两个对象a和b相互引用时，del语句可以减少a和b的引用计数，并销毁用于引用底层对象的名称。然而由于每个对象都包含一个对其他对象的应用，因此引用计数不会归零，对象也不会销毁。（从而导致内存泄露）。为解决这一问题，解释器会定期执行一个循环检测器，搜索不可访问对象的循环并删除它们。</p>
-<h4 id="三、内存池机制"><a href="#三、内存池机制" class="headerlink" title="三、内存池机制"></a>三、内存池机制</h4><p>Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。</p>
+<p>内存溢出问题</p>
+<ol>
+<li><p>对象一直被全局变量所引用, 全局变量生命周期长.</p>
+</li>
+<li><p>垃圾回收机被禁用或者设置成debug状态, 垃圾回收的内存不会被释放.</p>
+</li>
+</ol>
+<h4 id="内存池机制"><a href="#内存池机制" class="headerlink" title="内存池机制"></a>内存池机制</h4><p>Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。</p>
 <p>1，Pymalloc机制。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。</p>
-<h4 id="with底层实现"><a href="#with底层实现" class="headerlink" title="with底层实现"></a>with底层实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">__inter和 __end 方法<br></code></pre></td></tr></table></figure>
-
-
-
+<h4 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h4><p> with <code>__enter__</code> 和 <code>__exit__</code> 方法</p>
 <h4 id="元类"><a href="#元类" class="headerlink" title="元类"></a>元类</h4><p>​    相当于类的父类 用于创建类。python所以的东西都是对象，都是从一个类里面创建出来的，type就是python的内建元类。</p>
-<h3 id="asyncio"><a href="#asyncio" class="headerlink" title="asyncio"></a>asyncio</h3><p>​    异步非阻塞，内部可以await 停止做其他的操作比如网络</p>
-<p>​    </p>
-<p>Type Hint</p>
-<p>​    有提示</p>
+<p>django 用元类实现插件化与语法糖</p>
+<h4 id="asyncio"><a href="#asyncio" class="headerlink" title="asyncio"></a>asyncio</h4><p>​    异步非阻塞，内部可以await 停止做其他的操作比如网络</p>
+<p>​    fastapi</p>
 <h4 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h4><ul>
 <li>约定俗成、不是强制</li>
 </ul>
-<h4 id="性能调优"><a href="#性能调优" class="headerlink" title="性能调优"></a>性能调优</h4><p>​    分cpu密集型还是网络密集型的程序</p>
+<h4 id="装饰器-1"><a href="#装饰器-1" class="headerlink" title="装饰器"></a>装饰器</h4><p>抽离出大量函数中与函数功能本身无关的雷同代码并继续重用</p>
 <ul>
-<li>分本身考虑sql</li>
-<li>接口 异步 协成</li>
-<li>cpu换成c或者考虑多进程、pypy</li>
+<li><p>日志</p>
+</li>
+<li><p>资源开销型 with外写</p>
+</li>
 </ul>
-<h4 id="魔术方法（Magic-Method）"><a href="#魔术方法（Magic-Method）" class="headerlink" title="魔术方法（Magic Method）"></a>魔术方法（Magic Method）</h4><h4 id="init-new"><a href="#init-new" class="headerlink" title="__init__ / __new__"></a><code>__init__ / __new__</code></h4><ol>
-<li>init是初始化方法 实例方法，new是构造方法 静态方法</li>
-<li>new在init之前执行, 用于创建对象并返回对象（可返回实例如不可变对象）</li>
-<li>init返回None、new返回对象或者实例</li>
-<li>绝大多数情况下，我们都不需要自己重写__new__方法，但在当继承一个不可变的类型（例如str类,int类等）时，则需要用到new。</li>
-</ol>
-<h4 id="getter-setter"><a href="#getter-setter" class="headerlink" title="__getter__ / __setter__"></a><code>__getter__ / __setter__</code></h4><h4 id="doc"><a href="#doc" class="headerlink" title="__doc__"></a><code>__doc__</code></h4><p>文档字符串</p>
-<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p>抽离出大量函数中与函数功能本身无关的雷同代码并继续重用</p>
-<ul>
-<li>日志</li>
-<li>资源开销型 with外写</li>
+<h3 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h3><p>current_app 是应用上下文。应用程序运行过程中，保存的一些配置信息，</p>
+<p>request、session 是请求上下文。保存了客户端和服务器交互的数据。</p>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><h4 id="单例"><a href="#单例" class="headerlink" title="单例"></a>单例</h4><ul>
+<li><p>装饰器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">singleton</span>(<span class="hljs-params">cls</span>):</span> <br>	instances = &#123;&#125; <br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrapper</span>(<span class="hljs-params">*args, **kwargs</span>):</span> <br>			<span class="hljs-keyword">if</span> cls <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> instances: <br>				instances[cls] = cls(*args, **kwargs) <br>        <span class="hljs-keyword">return</span> instances[cls] <br>    <span class="hljs-keyword">return</span> wrapper <br><br><span class="hljs-meta">@singleton </span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span> <br>	<span class="hljs-keyword">pass</span> <br>	<br>foo1 = Foo() <br>foo2 = Foo() <br><span class="hljs-built_in">print</span>(foo1 <span class="hljs-keyword">is</span> foo2) <span class="hljs-comment"># True</span><br></code></pre></td></tr></table></figure></li>
+<li><p>使用基类，重写<code>__new__</code>方法</p>
+</li>
+<li><p>使用元类，type + metaclass</p>
+</li>
 </ul>
-<h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><p><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/glossary.html#term-generator">Generator</a> 是一个用于创建迭代器的简单而强大的工具。 它们的写法类似标准的函数，但当它们要返回数据时会使用 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/reference/simple_stmts.html#yield"><code>yield</code></a> 语句。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">g = (x*x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>))<br></code></pre></td></tr></table></figure>
-
-<h3 id="迭代器-iter"><a href="#迭代器-iter" class="headerlink" title="迭代器 iter()"></a>迭代器 iter()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>a = <span class="hljs-built_in">iter</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span>a<br>&lt;list_iterator <span class="hljs-built_in">object</span> at <span class="hljs-number">0x10abbac50</span>&gt;<br><span class="hljs-meta">&gt;&gt;&gt; </span>a.__next__()<br><span class="hljs-number">1</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>a.__next__()<br><span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><p>搜索从父类所继承属性的操作是深度优先、从左至右、递归查找。 派生类方法覆盖重载基类</p>
-<h4 id="metaclass"><a href="#metaclass" class="headerlink" title="metaclass"></a>metaclass</h4><p>元类 orm用的</p>
+<h4 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h4><p>搜索从父类所继承属性的操作是深度优先、从左至右、递归查找。 派生类方法覆盖重载基类</p>
 <h4 id="Classmethod-staticmethod"><a href="#Classmethod-staticmethod" class="headerlink" title="Classmethod / staticmethod"></a>Classmethod / staticmethod</h4><p>​        <strong>相同</strong></p>
 <ul>
 <li><p>都不需要实例化，即可调用</p>
@@ -295,16 +387,6 @@
 <li><p>类函数可以当做作为类似<code>__new__</code>一样的构造函数，用来返回类对象</p>
 </li>
 </ul>
-<h4 id="args-kwargs"><a href="#args-kwargs" class="headerlink" title="args/kwargs"></a>args/kwargs</h4><p>args 不定数量的输入参数</p>
-<p>kwargs 不定数量的键值对输入参数</p>
-<p><code>*args</code>必须在<code>**kwargs</code>前面</p>
-<h1 id="WSGI"><a href="#WSGI" class="headerlink" title="WSGI"></a>WSGI</h1><p>web server如何与web application通信的规范</p>
-<p>其实就是一个规范，他规范了Python程序和服务器之间的通信。对于Apache/Nginx等等服务器来说，只要支持WSGI规范，就可以保证所有(兼容WSGI的)Python程序能运行；对于Python程序或者框架来说，只要兼容WSGI，就可以保证能在所有(支持WSGI的)服务器上运行。这是WSGI的重要性，而那篇文章则是更深入的探讨了WSGI的设计，以及有没有什么可以提升的地方。</p>
-<p>一个HTTP请求的过程可以分为两个阶段，第一阶段是从客户端到WSGI Server，第二阶段是从WSGI Server 到WSGI Application</p>
-<p><strong>1、两级结构</strong> 在这种结构里，uWSGI作为服务器，它用到了HTTP协议以及wsgi协议，flask应用作为application，实现了wsgi协议。当有客户端发来请求，uWSGI接受请求，调用flask app得到相应，之后相应给客户端。 这里说一点，通常来说，Flask等web框架会自己附带一个wsgi服务器(这就是flask应用可以直接启动的原因)，但是这只是在开发阶段用到的，在生产环境是不够用的，所以用到了uwsgi这个性能高的wsgi服务器。</p>
-<p><strong>2、三级结构</strong> 这种结构里，uWSGI作为中间件，它用到了uwsgi协议(与nginx通信)，wsgi协议(调用Flask app)。当有客户端发来请求，nginx先做处理(静态资源是nginx的强项)，无法处理的请求(uWSGI)，最后的相应也是nginx回复给客户端的。 多了一层反向代理有什么好处？</p>
-<p>提高web server性能(uWSGI处理静态资源不如nginx；nginx会在收到一个完整的http请求后再转发给wWSGI)</p>
-<p>nginx可以做负载均衡(前提是有多个服务器)，保护了实际的web服务器(客户端是和nginx交互而不是uWSGI)</p>
 
             </div>
             <hr>
@@ -314,7 +396,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Python/">Python</a>
+                      <a class="hover-with-bg" href="/categories/Interview/">Interview</a>
                     
                   </div>
                 
