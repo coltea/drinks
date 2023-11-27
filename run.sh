@@ -1,2 +1,2 @@
 hexo generate
-scp -r public/  root@tx:/usr/share/nginx/html/
+scp -r public  root@aliyun:/home
